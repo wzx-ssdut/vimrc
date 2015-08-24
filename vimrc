@@ -109,10 +109,3 @@ inoremap <ESC> <NOP>
 nnoremap <Space> za
 " }}}
 
-noremap <F5> :call RunAries()<CR><CR>
-function RunAries()
-    execute "write"
-    echomsg "Run Aries"
-    !/develop/aries/client/bin/linux/Aries
-endfunction
-
