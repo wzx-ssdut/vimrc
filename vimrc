@@ -17,9 +17,6 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'kien/ctrlp.vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'rdnetto/YCM-Generator'
-Plugin 'vim-scripts/nginx.vim'
 Plugin 'Lokaltog/vim-powerline'
 call vundle#end()
 filetype plugin indent on
