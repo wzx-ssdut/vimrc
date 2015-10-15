@@ -2,7 +2,6 @@
 set nocompatible
 set magic
 set shortmess+=I " Do not show :intro message
-set scrolloff=3
 " }}}
 
 
@@ -18,22 +17,66 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Lokaltog/vim-powerline'
+Plugin 'Mizuchi/STL-Syntax'               " C++14 STL关键字
+Plugin 'altercation/vim-colors-solarized' " Color Scheme
+Plugin 'tomasr/molokai'                   " Color Scheme
 call vundle#end()
 filetype plugin indent on
 " }}}
 
 
+" 开启语法高亮功能
+syntax enable
+" 允许用指定语法高亮配色方案替换默认方案
+syntax on
+
 set number
+" 显示光标当前位置
+set ruler
+" 高亮显示当前行
+set cursorline
+"set cursorcolumn
+
+" Scroll {{{
+"set scroll=10 " 指定CTRL-U和CTRL-D滚动的行数，默认为屏幕一半行数
+set scrolloff=3
+set sidescrolloff=3
+" }}}
 
 " Theme {{{
-set background=dark
+if has("gui_running")
+    set background=light
+    colorscheme molokai
+else
+    set background=dark
+end
+" colorscheme solarized
+" colorscheme molokai
 " }}}
+
+
+" GUI {{{
+" 禁止光标闪烁
+set guicursor=a:block-blinkon0
+" 禁止显示滚动条
+set guioptions-=l
+set guioptions-=L
+set guioptions-=r
+set guioptions-=R
+" 禁止显示菜单和工具条
+set guioptions-=m
+set guioptions-=T
+ " 设置字体
+set guifont=Ubuntu\ Mono\ 14
+" }}}
+
 
 " Match {{{
 set showmatch
 set matchtime=1
 set matchpairs+=<:>
 " }}}
+
 
 " Search {{{
 set hlsearch
@@ -51,12 +94,11 @@ set fileencodings=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
 
 
 " Indent {{{
-set cindent
-set smarttab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
+filetype indent on  " 自适应不同语言的只能缩进
+set expandtab       " 将制表符扩展为空格
+set tabstop=4       " 设置编辑时制表符占用空格数
+set shiftwidth=4    " 设置格式化时制表符占用空格数
+set softtabstop=4   " 把连续数量的空格视为一个制表符
 " }}}
 
 
@@ -111,6 +153,7 @@ let g:syntastic_warning_symbol = '⚠'
 "whether to show balloons
 let g:syntastic_enable_balloons = 1
 " }}}
+
 
 inoremap jk <ESC>
 inoremap <ESC> <NOP>
