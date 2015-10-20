@@ -1,7 +1,7 @@
 " Base {{{
 set nocompatible
-set magic
 set shortmess+=I " Do not show :intro message
+set magic
 " }}}
 
 
@@ -18,8 +18,11 @@ Plugin 'scrooloose/syntastic'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'Mizuchi/STL-Syntax'               " C++14 STL关键字
+" 四套配色方案
 Plugin 'altercation/vim-colors-solarized' " Color Scheme
 Plugin 'tomasr/molokai'                   " Color Scheme
+Plugin 'nanotech/jellybeans.vim'          " Color Scheme
+Plugin 'endel/vim-github-colorscheme'     " Color Scheme
 call vundle#end()
 filetype plugin indent on
 " }}}
@@ -44,14 +47,16 @@ set sidescrolloff=3
 " }}}
 
 " Theme {{{
+" GUI界面使用light背景
 if has("gui_running")
     set background=light
-    colorscheme molokai
-else
+    "colorscheme github
+    colorscheme solarized
+else " Terminal界面使用dark背景
     set background=dark
+    "colorscheme jellybeans
+    colorscheme molokai  " Sublime Text 配色方案
 end
-" colorscheme solarized
-" colorscheme molokai
 " }}}
 
 
@@ -127,7 +132,7 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_user_command = 'find %s -type f'
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'file': '\v\.(a|lib|exe|so|dll)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
 " }}}
@@ -140,6 +145,7 @@ set t_Co=256
 let g:Powerline_symbols = 'fancy'
 " }}}
 
+
 " Syntastic {{{
 let g:syntastic_check_on_open = 1
 let g:syntastic_cpp_include_dirs = ['/usr/include/']
@@ -147,10 +153,8 @@ let g:syntastic_cpp_remove_include_errors = 1
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
-"set error or warning signs
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
-"whether to show balloons
 let g:syntastic_enable_balloons = 1
 " }}}
 
